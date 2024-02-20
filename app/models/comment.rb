@@ -22,4 +22,13 @@ class Comment < ApplicationRecord
 
     return the_user
   end
+
+  def ord_asc
+    comment_id = self.id
+
+    matching_comments = Comment.where({id: comment_id})
+    
+    matching_comments = matching_comments.order(created_at: :desc)
+    return matching_comments.at(0).created_at
+  end
 end
